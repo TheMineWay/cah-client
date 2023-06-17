@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ProviderError } from "../../errors/providers/provider.error";
 
 export enum Themes {
@@ -21,6 +21,12 @@ type Props = {
 
 export default function ThemeProvider({ children }: Props) {
   const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
+
+  useEffect(() => {
+    document
+      .getElementsByTagName("html")[0]
+      .setAttribute("data-theme", theme.theme);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider
