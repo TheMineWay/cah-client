@@ -11,7 +11,11 @@ export const setupI18n = () => {
     },
   };
 
-  i18n.use(initReactI18next).init({ resources });
+  i18n.use(initReactI18next).init({
+    resources,
+    lng: Languages.en_US,
+    fallbackLng: Languages.en_US,
+  });
 };
 
 export enum Languages {
