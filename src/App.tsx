@@ -1,8 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { Translations } from "./utils/i18n/i18n-setup.util";
+import { Button } from "react-daisyui";
 
 export default function App() {
-  const { t } = useTranslation([Translations.layout]);
-
-  return <>{t("test")}</>;
+  return (
+    <>
+      <Button color="primary">Helo world</Button>
+    </>
+  );
 }
