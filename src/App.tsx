@@ -3,6 +3,14 @@ import { useAuthentication } from "./providers/authentication/authentication-pro
 import AuthenticationPage from "./pages/platform/authentication-page";
 
 export default function App() {
+  return (
+    <div className="w-screen h-screen">
+      <AppContent />
+    </div>
+  );
+}
+
+const AppContent = () => {
   const { authCredentials } = useAuthentication();
 
   if (!authCredentials) return <AuthenticationPage />;
@@ -12,4 +20,4 @@ export default function App() {
       <Button color="primary">Helo world</Button>
     </>
   );
-}
+};

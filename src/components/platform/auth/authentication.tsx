@@ -1,9 +1,12 @@
+import { Card } from "react-daisyui";
 import Login from "./login";
 
 export default function Authentication() {
   return (
-    <div>
-      <Login />
-    </div>
+    <Card>
+      <Card.Body>
+        <Login />
+      </Card.Body>
+    </Card>
   );
 }
