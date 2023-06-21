@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { ProviderError } from "../../errors/providers/provider.error";
+import { ProviderException } from "../../errors/providers/provider.exception";
 import { LocalStorageService } from "../../services/storage/local-storage/local-storage.service";
 
 export enum Themes {
@@ -56,7 +56,7 @@ export const themes: Themes[] = [Themes.light, Themes.dark];
 export function useThemeProvider() {
   const context = useContext(ThemeContext);
 
-  if (!context) throw new ProviderError();
+  if (!context) throw new ProviderException();
 
   return context;
 }

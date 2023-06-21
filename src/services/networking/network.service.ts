@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-type Options = {
+export type RequestOptions = {
   url: string;
 
   body?: Object;
@@ -9,18 +9,18 @@ type Options = {
 };
 
 type AppRequestOptions = {
-  authToken?: string;
+  accessToken?: string;
 };
 
 export class NetworkService {
   async request(
-    { url, query, headers, body: data }: Options,
-    { authToken }: AppRequestOptions = {}
+    { url, query, headers, body: data }: RequestOptions,
+    { accessToken }: AppRequestOptions = {}
   ) {
     const config: AxiosRequestConfig = {
       url,
       headers: {
-        "Access-Token": authToken,
+        "Access-Token": accessToken,
         ...headers,
       },
       params: query,
