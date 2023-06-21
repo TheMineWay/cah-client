@@ -30,7 +30,17 @@ export const useFormProvider = () => {
 
   if (!context) throw new ProviderException();
 
-  return context;
+  const setValue = (name: string, value: unknown) => {
+    context.form.setFormState({
+      ...context.form.formState,
+      [name]: value,
+    });
+  };
+
+  return {
+    ...context,
+    setValue,
+  };
 };
 
 interface FormProviderType {
