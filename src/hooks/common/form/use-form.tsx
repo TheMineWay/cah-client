@@ -28,7 +28,7 @@ export function useForm<T extends FormValues>(
 }
 
 export interface IUseForm<T extends FormValues> {
-  formState?: Partial<T>;
+  formState: Partial<T>;
   setFormState: (formState: Partial<T>) => void;
   submit: () => Promise<void>;
 }
