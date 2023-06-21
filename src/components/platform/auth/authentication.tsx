@@ -1,3 +1,9 @@
+import Login from "./login";
+
 export default function Authentication() {
-  return <div></div>;
+  return (
+    <div>
+      <Login />
+    </div>
+  );
 }
