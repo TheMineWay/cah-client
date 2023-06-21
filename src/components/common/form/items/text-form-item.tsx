@@ -13,7 +13,7 @@ export default function TextFormItem<T extends FormValues>({
     <FormItem {...formItem}>
       <Input
         onChange={(e) => setValue(e.target.value)}
-        value={value}
+        value={value ?? ""}
         type="text"
         {...props}
       />
