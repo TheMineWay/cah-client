@@ -3,6 +3,7 @@ import { useForm } from "../../../hooks/common/form/use-form";
 import Form from "../../common/form/form";
 import TextFormItem from "../../common/form/items/text-form-item";
 import { Translations } from "../../../utils/i18n/i18n-setup.util";
+import PasswordFormItem from "../../common/form/items/password-form-item";
 
 export default function Login() {
   const { t } = useTranslation([Translations.authentication]);
@@ -14,6 +15,11 @@ export default function Login() {
       <TextFormItem<FormModel>
         formItem={{
           name: "nick",
+        }}
+      />
+      <PasswordFormItem<FormModel>
+        formItem={{
+          name: "password",
         }}
       />
     </Form>
