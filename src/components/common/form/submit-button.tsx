@@ -5,5 +5,9 @@ type Props = {
 };
 
 export default function SubmitButton({ text }: Props) {
-  return <Button type="submit">{text}</Button>;
+  return (
+    <Button type="submit" color="primary">
+      {text}
+    </Button>
+  );
 }
