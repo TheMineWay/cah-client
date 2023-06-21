@@ -25,7 +25,7 @@ export default function Form<T extends FormValues>({
 
           form.submit();
         }}
-        className="grid gap-2"
+        className="grid gap-4"
       >
         {children}
       </form>
