@@ -3,16 +3,16 @@ import Form from "../../common/form/form";
 import TextFormItem from "../../common/form/items/text-form-item";
 
 export default function Login() {
-  const form = useForm<FormValues>();
+  const form = useForm<FormModel>();
 
   return (
     <Form form={form}>
-      <TextFormItem<FormValues> formItem={{ name: "nick" }} />
+      <TextFormItem<FormModel> formItem={{ name: "nick" }} />
     </Form>
   );
 }
 
-class FormValues {
+class FormModel {
   nick!: string;
   password!: string;
 }
