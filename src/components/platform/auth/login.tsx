@@ -7,7 +7,7 @@ export default function Login() {
 
   return (
     <Form form={form}>
-      <TextFormItem formItem={{ name: "nick" }} />
+      <TextFormItem<FormValues> formItem={{ name: "nick" }} />
     </Form>
   );
 }

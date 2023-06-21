@@ -1,11 +1,13 @@
 import { Input } from "react-daisyui";
 import FormItem, { FormItemProps } from "../form-item";
 import { useFormProvider } from "../../../../providers/form/form-provider";
+import { FormValues } from "../form";
 
-type Props = FormItemProps;
-
-export default function TextFormItem({ props, formItem }: Props) {
-  const { setValue, value } = useFormProvider(formItem.name);
+export default function TextFormItem<T extends FormValues>({
+  props,
+  formItem,
+}: FormItemProps<T>) {
+  const { setValue, value } = useFormProvider(formItem.name.toString());
 
   return (
     <FormItem {...formItem}>
