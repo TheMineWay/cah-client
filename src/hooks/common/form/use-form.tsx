@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { FormValues } from "../../../components/common/form/form";
 
-type Options<T extends Object> = {
+type Options<T extends FormValues> = {
   onSubmit?: (values: T) => Promise<void>;
   initialValues?: T;
 };
 
-export function useForm<T extends Object>(
+export function useForm<T extends FormValues>(
   options: Options<T> = {}
 ): IUseForm<T> {
   // Form state
@@ -26,7 +27,7 @@ export function useForm<T extends Object>(
   };
 }
 
-export interface IUseForm<T extends Object> {
+export interface IUseForm<T extends FormValues> {
   formState?: T;
   setFormState: (formState: T) => void;
   submit: () => Promise<void>;

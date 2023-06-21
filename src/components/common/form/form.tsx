@@ -1,14 +1,20 @@
 import { IUseForm } from "../../../hooks/common/form/use-form";
+import FormProvider from "../../../providers/form/form-provider";
 
-type FormTypes = string | number;
+export type FormValues = Object;
 
-type Props<T extends Object> = {
+type Props<T extends FormValues> = {
   children: JSX.Element | JSX.Element[];
   form: IUseForm<T>;
 };
 
-export default function Form<T extends Record<string, FormTypes>>({
+export default function Form<T extends FormValues>({
   children,
+  form,
 }: Props<T>) {
-  return <div>{children}</div>;
+  return (
+    <FormProvider form={form}>
+      <>{children}</>
+    </FormProvider>
+  );
 }
