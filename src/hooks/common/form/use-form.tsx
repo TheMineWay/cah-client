@@ -16,9 +16,9 @@ export function useForm<T extends FormValues>(
     options.initialValues ?? {}
   );
 
-  const [errorsState, setErrorsState] = useState<
-    Record<keyof T, string[]> | {}
-  >({});
+  const [errorsState, setErrorsState] = useState(
+    {} as Record<keyof T, string[]>
+  );
 
   const validate = async () => {
     if (options.validationTarget) {
@@ -26,9 +26,9 @@ export function useForm<T extends FormValues>(
         Object.assign(options.validationTarget as Object, formState)
       );
 
-      const errorsObject: Record<string, string[]> = {};
+      const errorsObject = {} as Record<keyof T, string[]>;
       for (const error of errors) {
-        errorsObject[error.property] = Object.values(
+        errorsObject[error.property as keyof T] = Object.values(
           error.constraints as Record<string, string>
         );
       }
@@ -67,6 +67,6 @@ export interface IUseForm<T extends FormValues> {
   setFormState: (formState: Partial<T>) => void;
   submit: () => Promise<void>;
   validate: () => Promise<boolean>;
-  errorsState: Record<keyof T, string[]> | {};
-  setErrorsState: (errorsState: Record<keyof T, string[]> | {}) => void;
+  errorsState: Record<keyof T, string[]>;
+  setErrorsState: (errorsState: Record<keyof T, string[]>) => void;
 }

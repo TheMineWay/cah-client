@@ -21,7 +21,7 @@ export default function FormItem<T extends FormValues>({
   label: rawLabel,
   name,
 }: FormItemOptions<T>) {
-  const { i18n } = useFormProvider(name.toString());
+  const { i18n, errors } = useFormProvider(name.toString());
 
   const label =
     rawLabel === null
@@ -36,6 +36,7 @@ export default function FormItem<T extends FormValues>({
     <div className="grid gap-2">
       {label && <label>{label}</label>}
       <div>{children}</div>
+      {errors?.length > 0 && <div>{errors.join(".\n")}</div>}
     </div>
   );
 }

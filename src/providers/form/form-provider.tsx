@@ -43,10 +43,13 @@ export const useFormProvider = (name: string) => {
 
   const value = context.form.formState ? context.form.formState[name] : null;
 
+  const errors = context.form.errorsState ? context.form.errorsState[name] : [];
+
   return {
     ...context,
     setValue,
     value,
+    errors,
   };
 };
 
