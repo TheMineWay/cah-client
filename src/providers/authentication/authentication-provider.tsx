@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ProviderException } from "../../errors/providers/provider.exception";
+import { useDeviceStorage } from "../../hooks/storage/device-storage/use-device-storage";
 
 const AuthenticationContext = createContext<{
   authCredentials?: AuthCredentials;
@@ -12,6 +13,13 @@ type Props = {
 
 export default function AuthenticationProvider({ children }: Props) {
   const [authCredentials, setAuthCredentials] = useState<AuthCredentials>();
+
+  const { get } = useDeviceStorage();
+
+  useEffect(() => {
+    const accessToken = get<string>("accessToken");
+    if (accessToken) setAuthCredentials({ accessToken });
+  }, []);
 
   return (
     <AuthenticationContext.Provider
@@ -34,8 +42,16 @@ export const useAuthentication = () => {
 
   if (!context) throw new ProviderException();
 
+  const { set } = useDeviceStorage();
+
+  const setAccessToken = (accessToken: string) => {
+    context.setAuthCredentials({ accessToken });
+    set("accessToken", accessToken);
+  };
+
   return {
     authCredentials: context.authCredentials,
     setAuthCredentials: context.setAuthCredentials,
+    setAccessToken,
   };
 };

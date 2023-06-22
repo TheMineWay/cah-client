@@ -16,15 +16,16 @@ export default function Login() {
   const { t } = useTranslation([Translations.authentication]);
 
   const login = useLogin();
-  const { setAuthCredentials } = useAuthentication();
+  const { setAccessToken } = useAuthentication();
 
   const form = useForm({
     validationTarget: new FormModel(),
     onSubmit: async ({ nick, password }) => {
       const response = await login(nick, password);
 
-      if (response.data.accessToken)
-        setAuthCredentials({ accessToken: response.data.accessToken });
+      if (response.data.accessToken) {
+        setAccessToken(response.data.accessToken);
+      }
     },
   });
 
