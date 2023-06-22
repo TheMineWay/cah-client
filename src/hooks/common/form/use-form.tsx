@@ -4,6 +4,7 @@ import { FormValues } from "../../../components/common/form/form";
 type Options<T extends FormValues> = {
   onSubmit?: (values: T) => Promise<void>;
   initialValues?: Partial<T>;
+  validationTarget?: T;
 };
 
 export function useForm<T extends FormValues>(

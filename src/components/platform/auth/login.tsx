@@ -5,6 +5,7 @@ import TextFormItem from "../../common/form/items/text-form-item";
 import { Translations } from "../../../utils/i18n/i18n-setup.util";
 import PasswordFormItem from "../../common/form/items/password-form-item";
 import SubmitButton from "../../common/form/submit-button";
+import { IsString } from "class-validator";
 
 export default function Login() {
   const { t } = useTranslation([Translations.authentication]);
@@ -29,6 +30,8 @@ export default function Login() {
 }
 
 class FormModel {
+  @IsString()
   nick!: string;
+  @IsString()
   password!: string;
 }
