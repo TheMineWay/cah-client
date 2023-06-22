@@ -5,6 +5,7 @@ import { initReactI18next } from "react-i18next";
 import en_US_layout from "../../locales/en_US/platform/layout.json";
 import en_US_authentication from "../../locales/en_US/authentication/auth.json";
 import en_US_formValidation from "../../locales/en_US/form/validation.json";
+import en_US_platform from "../../locales/en_US/platform/platform.json";
 
 export const setupI18n = () => {
   const resources = {
@@ -12,6 +13,7 @@ export const setupI18n = () => {
       [Translations.layout]: en_US_layout,
       [Translations.authentication]: en_US_authentication,
       [Translations.formValidation]: en_US_formValidation,
+      [Translations.platform]: en_US_platform,
     },
   };
 
@@ -30,4 +32,5 @@ export enum Translations {
   layout = "layout",
   authentication = "authentication",
   formValidation = "formValidation",
+  platform = "platform",
 }

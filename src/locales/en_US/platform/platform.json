@@ -1,0 +1,12 @@
+{
+    "serverConfiguration": {
+        "form": {
+            "fields": {
+                "host": {
+                    "Label": "Host"
+                }
+            },
+            "Submit": "Save"
+        }
+    }
+}

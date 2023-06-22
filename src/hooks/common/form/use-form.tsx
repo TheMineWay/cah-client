@@ -68,7 +68,7 @@ export function useForm<T extends FormValues>(
     setLoading(true);
     try {
       // Vaalidate fields
-      if (!validate()) return;
+      if (!(await validate())) return;
 
       // Execute submit function
       if (options.onSubmit && formState) await options.onSubmit(formState as T);
