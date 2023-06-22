@@ -3,6 +3,7 @@ import { FormValues } from "./form";
 import { useFormProvider } from "../../../providers/form/form-provider";
 import { useTranslation } from "react-i18next";
 import { Translations } from "../../../utils/i18n/i18n-setup.util";
+import styles from "./form-item.module.css";
 
 export type FormItemProps<
   T extends FormValues,
@@ -39,7 +40,7 @@ export default function FormItem<T extends FormValues>({
   return (
     <div className="grid gap-2">
       {label && <label>{label}</label>}
-      <div>{children}</div>
+      <div className={styles.item}>{children}</div>
       {errors?.length > 0 && (
         <div>
           {errors.map((error) => (
