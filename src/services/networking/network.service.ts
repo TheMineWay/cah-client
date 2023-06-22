@@ -24,7 +24,13 @@ type AppRequestOptions = {
 
 export class NetworkService {
   async request<T extends Object>(
-    { url, query, headers, body: data, method }: RequestOptions,
+    {
+      url,
+      query,
+      headers,
+      body: data,
+      method = HttpMethods.GET,
+    }: RequestOptions,
     { accessToken }: AppRequestOptions = {}
   ) {
     const config: AxiosRequestConfig = {
