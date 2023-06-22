@@ -4,13 +4,13 @@ import { useRequest } from "../../networking/use-request";
 export function useLogin() {
   const { request } = useRequest();
 
-  return async (nickname: string, password: string) =>
+  return async (nick: string, password: string) =>
     await request<{
       accessToken: string;
     }>({
       url: "auth/login",
       body: {
-        nickname,
+        nick,
         password,
       },
       method: HttpMethods.POST,
