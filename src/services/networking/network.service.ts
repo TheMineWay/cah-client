@@ -6,15 +6,25 @@ export type RequestOptions = {
   body?: Object;
   headers?: Record<string, string>;
   query?: Record<string, Object>;
+  method?: HttpMethods;
 };
+
+export enum HttpMethods {
+  GET = "get",
+  POST = "post",
+  DELETE = "delete",
+  PUT = "put",
+  HEAD = "head",
+  OPTIONS = "options",
+}
 
 type AppRequestOptions = {
   accessToken?: string;
 };
 
 export class NetworkService {
-  async request(
-    { url, query, headers, body: data }: RequestOptions,
+  async request<T extends Object>(
+    { url, query, headers, body: data, method }: RequestOptions,
     { accessToken }: AppRequestOptions = {}
   ) {
     const config: AxiosRequestConfig = {
@@ -25,8 +35,9 @@ export class NetworkService {
       },
       params: query,
       data,
+      method,
     };
 
-    return await axios.request(config);
+    return await axios.request<T>(config);
   }
 }

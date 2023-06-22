@@ -9,11 +9,24 @@ import { IsString } from "../../../decorators/validation/basic/string/is-string.
 import { IsNotEmpty } from "../../../decorators/validation/basic/string/is-not-empty.decorator";
 import { MinLength } from "../../../decorators/validation/basic/string/min-length.decorator";
 import { MaxLength } from "../../../decorators/validation/basic/string/max-length.decorator";
+import { useLogin } from "../../../hooks/api/authentication/use-login";
+import { useAuthentication } from "../../../providers/authentication/authentication-provider";
 
 export default function Login() {
   const { t } = useTranslation([Translations.authentication]);
 
-  const form = useForm({ validationTarget: new FormModel() });
+  const login = useLogin();
+  const { setAuthCredentials } = useAuthentication();
+
+  const form = useForm({
+    validationTarget: new FormModel(),
+    onSubmit: async ({ nick, password }) => {
+      const response = await login(nick, password);
+
+      if (response.data.accessToken)
+        setAuthCredentials({ accessToken: response.data.accessToken });
+    },
+  });
 
   return (
     <Form form={form} i18n={{ t, path: "authPage.login.form.fields" }}>

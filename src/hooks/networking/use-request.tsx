@@ -7,8 +7,22 @@ import {
 export function useRequest() {
   const { authCredentials } = useAuthentication();
 
-  return async (options: RequestOptions) =>
-    new NetworkService().request(options, {
-      accessToken: authCredentials?.accessToken,
-    });
+  // Replace with host provider
+  const host = "http://localhost:4000";
+
+  return {
+    request: async <T extends Object>({
+      prefixWithHost = true,
+      ...options
+    }: RequestOptions & { prefixWithHost?: boolean }) =>
+      new NetworkService().request<T>(
+        {
+          ...options,
+          url: prefixWithHost ? `${host}/${options.url}` : options.url,
+        },
+        {
+          accessToken: authCredentials?.accessToken,
+        }
+      ),
+  };
 }
