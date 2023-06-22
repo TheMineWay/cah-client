@@ -10,7 +10,7 @@
             "Text": "The text cannot be empty"
         },
         "not-string": {
-            "Text": "Thsi field must contain text"
+            "Text": "This field must contain text"
         }
     }
 }

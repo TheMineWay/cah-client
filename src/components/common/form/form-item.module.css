@@ -1,3 +1,7 @@
 div.item > * {
   width: 100%;
 }
+
+p.error {
+  color: hsl(var(--er));
+}

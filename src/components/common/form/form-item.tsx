@@ -44,8 +44,8 @@ export default function FormItem<T extends FormValues>({
       {errors?.length > 0 && (
         <div>
           {errors.map((error) => (
-            <p key={error.errorKey}>
-              {t(`errors.${error.errorKey}.Text`, error.args)}
+            <p key={error.errorKey} className={styles.error}>
+              {t(`errors.${error.errorKey}.Text`, error.args)}.
             </p>
           ))}
         </div>
