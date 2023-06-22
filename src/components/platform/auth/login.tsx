@@ -5,7 +5,10 @@ import TextFormItem from "../../common/form/items/text-form-item";
 import { Translations } from "../../../utils/i18n/i18n-setup.util";
 import PasswordFormItem from "../../common/form/items/password-form-item";
 import SubmitButton from "../../common/form/submit-button";
-import { IsString, MinLength } from "class-validator";
+import { IsString } from "../../../decorators/validation/basic/string/is-string.decorator";
+import { IsNotEmpty } from "../../../decorators/validation/basic/string/is-not-empty.decorator";
+import { MinLength } from "../../../decorators/validation/basic/string/min-length.decorator";
+import { MaxLength } from "../../../decorators/validation/basic/string/max-length.decorator";
 
 export default function Login() {
   const { t } = useTranslation([Translations.authentication]);
@@ -31,9 +34,14 @@ export default function Login() {
 
 class FormModel {
   @IsString()
+  @IsNotEmpty()
   @MinLength(4)
+  @MaxLength(16)
   nick!: string;
+
   @IsString()
+  @IsNotEmpty()
   @MinLength(8)
+  @MaxLength(128)
   password!: string;
 }
