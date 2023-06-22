@@ -4,7 +4,7 @@ import AuthenticationPage from "./pages/platform/authentication-page";
 
 export default function App() {
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen bg-neutral-content">
       <AppContent />
     </div>
   );

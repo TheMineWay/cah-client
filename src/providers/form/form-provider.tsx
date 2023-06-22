@@ -29,10 +29,16 @@ export default function FormProvider<T extends FormValues>({
   );
 }
 
-export const useFormProvider = (name: string) => {
+export const useFormProvider = () => {
   const context = useContext(FormContext);
 
   if (!context) throw new ProviderException();
+
+  return context;
+};
+
+export const useFormProviderAsFormItem = (name: string) => {
+  const context = useFormProvider();
 
   const setValue = (value: unknown) => {
     context.form.setFormState({

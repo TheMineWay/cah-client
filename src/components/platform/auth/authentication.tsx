@@ -3,7 +3,7 @@ import Login from "./login";
 
 export default function Authentication() {
   return (
-    <Card>
+    <Card className="bg-neutral-focus">
       <Card.Body>
         <Login />
       </Card.Body>

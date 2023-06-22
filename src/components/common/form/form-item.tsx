@@ -1,6 +1,6 @@
 import { InputProps } from "react-daisyui";
 import { FormValues } from "./form";
-import { useFormProvider } from "../../../providers/form/form-provider";
+import { useFormProviderAsFormItem } from "../../../providers/form/form-provider";
 import { useTranslation } from "react-i18next";
 import { Translations } from "../../../utils/i18n/i18n-setup.util";
 import styles from "./form-item.module.css";
@@ -26,7 +26,7 @@ export default function FormItem<T extends FormValues>({
 }: FormItemOptions<T>) {
   const { t } = useTranslation([Translations.formValidation]);
 
-  const { i18n, errors } = useFormProvider(name.toString());
+  const { i18n, errors } = useFormProviderAsFormItem(name.toString());
 
   const label =
     rawLabel === null

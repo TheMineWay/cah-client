@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FormValues } from "../../../components/common/form/form";
 import { validate as cvValidate } from "class-validator";
+import { useLoading } from "../loading/use-loading";
 
 type Options<T extends FormValues> = {
   onSubmit?: (values: T) => Promise<void>;
@@ -17,6 +18,9 @@ export type FormError = {
 export function useForm<T extends FormValues>(
   options: Options<T> = {}
 ): IUseForm<T> {
+  // Loading
+  const { isLoading, setLoading } = useLoading();
+
   // Form state
   const [formState, setFormState] = useState<Partial<T>>(
     options.initialValues ?? {}
@@ -61,10 +65,16 @@ export function useForm<T extends FormValues>(
 
   // On form is submitted
   const submit = async () => {
-    if (!validate()) return;
+    setLoading(true);
+    try {
+      // Vaalidate fields
+      if (!validate()) return;
 
-    // TODO: loading
-    if (options.onSubmit && formState) await options.onSubmit(formState as T);
+      // Execute submit function
+      if (options.onSubmit && formState) await options.onSubmit(formState as T);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {
@@ -74,6 +84,7 @@ export function useForm<T extends FormValues>(
     validate,
     errorsState,
     setErrorsState,
+    isLoading,
   };
 }
 
@@ -84,4 +95,5 @@ export interface IUseForm<T extends FormValues> {
   validate: () => Promise<boolean>;
   errorsState: Record<keyof T, FormError[]>;
   setErrorsState: (errorsState: Record<keyof T, FormError[]>) => void;
+  isLoading: boolean;
 }
