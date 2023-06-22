@@ -1,6 +1,8 @@
 import { InputProps } from "react-daisyui";
 import { FormValues } from "./form";
 import { useFormProvider } from "../../../providers/form/form-provider";
+import { useTranslation } from "react-i18next";
+import { Translations } from "../../../utils/i18n/i18n-setup.util";
 
 export type FormItemProps<
   T extends FormValues,
@@ -21,6 +23,8 @@ export default function FormItem<T extends FormValues>({
   label: rawLabel,
   name,
 }: FormItemOptions<T>) {
+  const { t } = useTranslation([Translations.formValidation]);
+
   const { i18n, errors } = useFormProvider(name.toString());
 
   const label =
@@ -36,7 +40,15 @@ export default function FormItem<T extends FormValues>({
     <div className="grid gap-2">
       {label && <label>{label}</label>}
       <div>{children}</div>
-      {errors?.length > 0 && <div>{errors.join(".\n")}</div>}
+      {errors?.length > 0 && (
+        <div>
+          {errors.map((error) => (
+            <p key={error.errorKey}>
+              {t(`errors.${error.errorKey}.Text`, error.args)}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

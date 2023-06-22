@@ -1,0 +1,16 @@
+{
+    "errors": {
+        "max-length": {
+            "Text": "The text cannot be longer than {{max}} characters"
+        },
+        "min-length": {
+            "Text": "The text cannot be shorter that {{min}} characters"
+        },
+        "is-empty": {
+            "Text": "The text cannot be empty"
+        },
+        "not-string": {
+            "Text": "Thsi field must contain text"
+        }
+    }
+}

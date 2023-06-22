@@ -4,12 +4,14 @@ import { initReactI18next } from "react-i18next";
 // en_US
 import en_US_layout from "../../locales/en_US/platform/layout.json";
 import en_US_authentication from "../../locales/en_US/authentication/auth.json";
+import en_US_formValidation from "../../locales/en_US/form/validation.json";
 
 export const setupI18n = () => {
   const resources = {
     [Languages.en_US]: {
       [Translations.layout]: en_US_layout,
       [Translations.authentication]: en_US_authentication,
+      [Translations.formValidation]: en_US_formValidation,
     },
   };
 
@@ -27,4 +29,5 @@ export enum Languages {
 export enum Translations {
   layout = "layout",
   authentication = "authentication",
+  formValidation = "formValidation",
 }

@@ -34,8 +34,6 @@ export function useForm<T extends FormValues>(
 
       const errorsObject = {} as Record<keyof T, FormError[]>;
       for (const error of errors) {
-        console.log(error);
-
         errorsObject[error.property as keyof T] = Object.values(
           error.constraints as Record<string, string>
         ).map((v) => {
@@ -49,8 +47,6 @@ export function useForm<T extends FormValues>(
           };
         });
       }
-
-      console.log({ errorsObject });
 
       // Update state
       setErrorsState(errorsObject);
