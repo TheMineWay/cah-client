@@ -1,6 +1,8 @@
 import { Button } from "react-daisyui";
 import { useAuthentication } from "./providers/authentication/authentication-provider";
 import AuthenticationPage from "./pages/platform/authentication-page";
+import { useServer } from "./providers/server/server-provider";
+import ServerSetupPage from "./pages/platform/server-setup-page";
 
 export default function App() {
   return (
@@ -11,8 +13,10 @@ export default function App() {
 }
 
 const AppContent = () => {
+  const { server } = useServer();
   const { authCredentials } = useAuthentication();
 
+  if (!server) return <ServerSetupPage />;
   if (!authCredentials) return <AuthenticationPage />;
 
   return (
