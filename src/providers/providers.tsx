@@ -1,4 +1,5 @@
 import AuthenticationProvider from "./authentication/authentication-provider";
+import ServerProvider from "./server/server-provider";
 import ThemeProvider from "./theme/theme-provider";
 
 type Props = {
@@ -8,7 +9,9 @@ type Props = {
 export default function Providers({ children }: Props) {
   return (
     <ThemeProvider>
-      <AuthenticationProvider>{children}</AuthenticationProvider>
+      <ServerProvider>
+        <AuthenticationProvider>{children}</AuthenticationProvider>
+      </ServerProvider>
     </ThemeProvider>
   );
 }

@@ -1,4 +1,5 @@
 import { useAuthentication } from "../../providers/authentication/authentication-provider";
+import { useServer } from "../../providers/server/server-provider";
 import {
   NetworkService,
   RequestOptions,
@@ -7,8 +8,8 @@ import {
 export function useRequest() {
   const { authCredentials } = useAuthentication();
 
-  // Replace with host provider
-  const host = "http://localhost:4000";
+  const { server } = useServer();
+  const host = server?.host;
 
   return {
     request: async <T extends Object>({
