@@ -10,7 +10,7 @@ import { IsString } from "class-validator";
 export default function Login() {
   const { t } = useTranslation([Translations.authentication]);
 
-  const form = useForm<FormModel>();
+  const form = useForm({ validationTarget: new FormModel() });
 
   return (
     <Form form={form} i18n={{ t, path: "authPage.login.form.fields" }}>
