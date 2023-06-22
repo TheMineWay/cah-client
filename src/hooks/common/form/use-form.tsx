@@ -25,10 +25,22 @@ export function useForm<T extends FormValues>(
       const errors = await cvValidate(
         Object.assign(options.validationTarget as Object, formState)
       );
+
+      const errorsObject: Record<string, string[]> = {};
       for (const error of errors) {
-        console.log(error);
+        errorsObject[error.property] = Object.values(
+          error.constraints as Record<string, string>
+        );
       }
+
+      // Update state
+      setErrorsState(errorsObject);
+
+      // Validation failed as errors happened
+      if (Object.keys(errorsObject).length > 0) return false;
     }
+
+    // All nice and smooth 😀
     return true;
   };
 
