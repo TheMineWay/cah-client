@@ -7,15 +7,14 @@ import pj from "../../../../../package.json";
 export default function ServerCheck() {
   const { setServer } = useServer();
 
-  const getServerInfo = useServerInfo();
+  const { data: serverInfo } = useServerInfo();
 
   useEffect(() => {
     checkVersion();
-  }, []);
+  }, [serverInfo]);
 
   const checkVersion = async () => {
     // Change to stateful request
-    const serverInfo = await getServerInfo();
   };
 
   return (
