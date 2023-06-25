@@ -8,6 +8,7 @@ import { Translations } from "../../../../utils/i18n/i18n-setup.util";
 import { IsNotEmpty } from "../../../../decorators/validation/basic/string/is-not-empty.decorator";
 import SubmitButton from "../../../common/form/submit-button";
 import { useState } from "react";
+import ServerCheck from "./server-check";
 
 export default function ServerSetup() {
   const [server, setServer] = useState<string>();
@@ -18,7 +19,7 @@ export default function ServerSetup() {
   });
   const { t } = useTranslation(Translations.platform);
 
-  if (server) return <></>;
+  if (server) return <ServerCheck server={server} />;
 
   return (
     <Card className="bg-neutral-focus">

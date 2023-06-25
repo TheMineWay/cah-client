@@ -11,7 +11,7 @@ export function useServerInfo() {
         maxClientVersion: string;
         serverVersion: string;
       }>({
-        url: "info",
+        url: `info`,
       }),
   });
 }
