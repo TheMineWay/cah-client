@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { ProviderException } from "../../errors/providers/provider.exception";
+import ServerSetupPage from "../../pages/platform/server-setup-page";
 
 const ServerContext = createContext<{
   server?: ServerContextType;
@@ -20,10 +21,17 @@ export default function ServerProvider({ children }: Props) {
         setServer,
       }}
     >
-      {children}
+      <EnsureProvider>{children}</EnsureProvider>
     </ServerContext.Provider>
   );
 }
+
+const EnsureProvider = ({ children }: Props) => {
+  const { server } = useServer();
+
+  if (server) return children;
+  return <ServerSetupPage />;
+};
 
 export const useServer = () => {
   const context = useContext(ServerContext);

@@ -9,8 +9,10 @@ setupI18n();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Providers>
-      <App />
-    </Providers>
+    <div className="w-screen h-screen bg-neutral-content">
+      <Providers>
+        <App />
+      </Providers>
+    </div>
   </React.StrictMode>
 );
